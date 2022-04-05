@@ -12,7 +12,7 @@
     <artifactId>Avalon</artifactId>
     <version>0.0.1</version>
     <name>Avalon_conversor</name>
-    <description>Avalon conversos de json</description>
+    <description>Avalon conversor de json</description>
     <properties>
         <java.version>11</java.version>
     </properties>
