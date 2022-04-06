@@ -51,7 +51,7 @@
             <h4>Subir varios archivos:</h4>
             <form method="POST" th:action="@{/uploadFiles}" enctype="multipart/form-data">
                 <div class="form-group">
-                    <input type="file" name="files" multiple/> <br/><br/>
+                    <input type="file" name="files" accept="application/JSON" multiple/> <br/><br/>
                     <button type="submit">Enviar</button>
                 </div>
             </form>
