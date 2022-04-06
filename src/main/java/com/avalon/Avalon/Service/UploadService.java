@@ -5,12 +5,6 @@
 package com.avalon.Avalon.Service;
 
 import com.avalon.Avalon.Repository.VolumetricoSATRepository;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Iterator;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -19,6 +13,13 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Iterator;
 
 /**
  *
@@ -68,8 +69,9 @@ public class UploadService {
 
 //            File folder = new File("cargas//");
 //            findAllFilesInFolder(folder);
+        } else {
+            return "Archivo vacio!";
         }
-
         return "Archivo guardado correctamente";
     }
 
