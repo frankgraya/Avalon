@@ -5,6 +5,7 @@
 package com.avalon.Avalon.Service;
 
 import com.avalon.Avalon.Model.VolumetricoSAT;
+import com.avalon.Avalon.Util.JSONUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.parser.ParseException;
@@ -26,9 +27,9 @@ public class UploadService {
     @Autowired
     private VolumetricoSATService volumetricoSATService;
 
-    public void save(MultipartFile file) throws IOException {
+    public void save(MultipartFile file) {
         if (!file.isEmpty()) {
-            VolumetricoSAT volumetricoSAT = new ObjectMapper().readValue(file.getBytes(), VolumetricoSAT.class);
+            VolumetricoSAT volumetricoSAT = JSONUtil.convertJsonToJava(file, VolumetricoSAT.class);
             volumetricoSATService.saveVolumetricoSAT(volumetricoSAT);
         } else {
             throw new FileStorageException("Archivo vacio!");

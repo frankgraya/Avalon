@@ -13,6 +13,7 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -89,9 +90,9 @@ public class VolumetricoSAT implements Serializable {
     @Column(name = "NumeroDispensarios", nullable = false, length = 150)
     private int NumeroDispensarios;
 
-//    @Column(name = "FechaYHoraReporteMes", updatable = false, nullable = false)
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private String FechaYHoraReporteMes;
+    @JsonProperty("FechaYHoraReporteMes")
+    @Column(name = "FechaYHoraReporteMes", updatable = false, nullable = false)
+    private Date FechaYHoraReporteMes;
 //    @OneToOne(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 //    @OneToOne(mappedBy = "producto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    private Producto producto;
