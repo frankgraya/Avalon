@@ -4,6 +4,7 @@
  */
 package com.avalon.Avalon.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -32,51 +34,65 @@ public class VolumetricoSAT implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @JsonProperty("Version")
     @Column(name = "Version", nullable = false, length = 150)
-    private long Version;
+    private String Version;
 
+    @JsonProperty("RfcContribuyente")
     @Column(name = "RfcContribuyente", nullable = false, length = 150)
     private String RfcContribuyente;
 
+    @JsonProperty("RfcRepresentanteLegal")
     @Column(name = "RfcRepresentanteLegal", nullable = false, length = 150)
     private String RfcRepresentanteLegal;
 
+    @JsonProperty("RfcProveedor")
     @Column(name = "RfcProveedor", nullable = false, length = 150)
     private String RfcProveedor;
 
+    @JsonProperty("Caracter")
     @Column(name = "Caracter", nullable = false, length = 150)
     private String Caracter;
 
+    @JsonProperty("ModalidadPermiso")
     @Column(name = "ModalidadPermiso", nullable = false, length = 150)
     private String ModalidadPermiso;
 
+    @JsonProperty("NumPermiso")
     @Column(name = "NumPermiso", nullable = false, length = 150)
     private String NumPermiso;
 
+    @JsonProperty("ClaveInstalacion")
     @Column(name = "ClaveInstalacion", nullable = false, length = 150)
     private String ClaveInstalacion;
 
+    @JsonProperty("DescripcionInstalacion")
     @Column(name = "DescripcionInstalacion", nullable = false, length = 150)
     private String DescripcionInstalacion;
 
+    @JsonProperty("NumeroPozos")
     @Column(name = "NumeroPozos", nullable = false)
     private int NumeroPozos;
 
+    @JsonProperty("NumeroTanques")
     @Column(name = "NumeroTanques", nullable = false)
     private int NumeroTanques;
 
+    @JsonProperty("NumeroDuctosEntradaSalida")
     @Column(name = "NumeroDuctosEntradaSalida", nullable = false)
     private int NumeroDuctosEntradaSalida;
 
+    @JsonProperty("NumeroDuctosTransporteDistribucion")
     @Column(name = "NumeroDuctosTransporteDistribucion", nullable = false)
     private int NumeroDuctosTransporteDistribucion;
 
+    @JsonProperty("NumeroDispensarios")
     @Column(name = "NumeroDispensarios", nullable = false, length = 150)
-    private String NumeroDispensarios;
+    private int NumeroDispensarios;
 
-//    @Column(name = "FechaYHoraReporteMes", updatable = false, nullable = false)
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private String FechaYHoraReporteMes;
+    @JsonProperty("FechaYHoraReporteMes")
+    @Column(name = "FechaYHoraReporteMes", updatable = false, nullable = false)
+    private Date FechaYHoraReporteMes;
 //    @OneToOne(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 //    @OneToOne(mappedBy = "producto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    private Producto producto;

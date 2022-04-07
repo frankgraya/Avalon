@@ -25,9 +25,9 @@ public class VolumetricoSATServiceImpl implements VolumetricoSATService {
     private VolumetricoSATRepository volumetricoSATRepository;
 
     @Override
-    public VolumetricoSAT saveVolumetricoSAT(VolumetricoSAT volumetricoSAT) {
-        log.info("Se guardo saveEmployee con exito ");
-        return volumetricoSATRepository.save(volumetricoSAT);
+    public void saveVolumetricoSAT(VolumetricoSAT volumetricoSAT) {
+        volumetricoSATRepository.save(volumetricoSAT);
+        log.info("Se guardo con exito!");
     }
 
     @Override

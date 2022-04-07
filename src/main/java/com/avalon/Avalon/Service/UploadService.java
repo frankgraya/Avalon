@@ -4,22 +4,17 @@
  */
 package com.avalon.Avalon.Service;
 
-import com.avalon.Avalon.Repository.VolumetricoSATRepository;
+import com.avalon.Avalon.Model.VolumetricoSAT;
+import com.avalon.Avalon.Util.JSONUtil;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Iterator;
 
 /**
  *
@@ -29,50 +24,16 @@ import java.util.Iterator;
 @Service
 public class UploadService {
 
-    private String folder = "cargas//";
-
     @Autowired
-    private VolumetricoSATRepository volumetricoSATRepository;
+    private VolumetricoSATService volumetricoSATService;
 
-    public String save(MultipartFile file) throws IOException, ParseException {
-
+    public void save(MultipartFile file) {
         if (!file.isEmpty()) {
-
-            byte[] bytes = file.getBytes();
-            Path path = Paths.get(folder + file.getOriginalFilename());
-            Files.write(path, bytes);
-            log.info("Archivo guardado");
-
-            System.out.println("ESTAS apunto de convertir el json");
-            JSONParser parser = new JSONParser();
-
-            log.info("ESTAS OBTENIENDO EL OBJETO");
-//
-            //leer la ruta del archivo
-            Object obj = parser.parse(new FileReader("test2.json"));
-            log.info("EL OBJETO ES " + obj);
-            JSONObject jsonObject = (JSONObject) obj;
-
-            String Version = (String) jsonObject.get("Version");
-            System.out.println(Version);
-
-            long RfcContribuyente = (Long) jsonObject.get("RfcContribuyente");
-            System.out.println(RfcContribuyente);
-            // loop array
-            JSONArray msg = (JSONArray) jsonObject.get("MENSAJE");
-
-            //leer completo el mensaje
-            Iterator<String> iterator = msg.iterator();
-            while (iterator.hasNext()) {
-                System.out.println(iterator.next());
-            }
-
-//            File folder = new File("cargas//");
-//            findAllFilesInFolder(folder);
+            VolumetricoSAT volumetricoSAT = JSONUtil.convertJsonToJava(file, VolumetricoSAT.class);
+            volumetricoSATService.saveVolumetricoSAT(volumetricoSAT);
         } else {
-            return "Archivo vacio!";
+            throw new FileStorageException("Archivo vacio!");
         }
-        return "Archivo guardado correctamente";
     }
 
 //    public void JsonConversor() throws ParseException {
