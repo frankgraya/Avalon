@@ -16,6 +16,9 @@ public class Entregas {
     @JsonProperty("TotalEntregasMes")
     private long TotalEntregasMes;
 
+    @JsonProperty("SumaVolumenEntregadoMes")
+    private Volumen SumaVolumenEntregadoMes;
+
     @JsonProperty("TotalDocumentosMes")
     private long TotalDocumentosMes;
 
