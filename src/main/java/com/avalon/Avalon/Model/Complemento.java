@@ -20,4 +20,7 @@ public class Complemento {
     @JsonProperty("Nacional")
     private List<Nacional> Nacional;
 
+    //@JsonProperty("TerminalAlmYDist")
+    //private Transporte Transporte;
+
 }
