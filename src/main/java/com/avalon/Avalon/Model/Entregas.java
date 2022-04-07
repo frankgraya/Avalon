@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -23,7 +25,9 @@ public class Entregas {
     private long TotalDocumentosMes;
 
     @JsonProperty("ImporteTotalEntregasMes")
-    private long ImporteTotalEntregasMes;
+    private double ImporteTotalEntregasMes;
 
+    @JsonProperty("Complemento")
+    private List<Complemento> Complemento;
 
 }

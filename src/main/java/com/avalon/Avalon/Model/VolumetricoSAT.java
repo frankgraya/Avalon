@@ -13,8 +13,7 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Objects;
+import java.util.*;
 
 /**
  *
@@ -22,7 +21,6 @@ import java.util.Objects;
  */
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
 @Entity
 @Table(name = "VolumetricoSAT")
@@ -32,7 +30,7 @@ public class VolumetricoSAT implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long Id;
 
     @JsonProperty("Version")
     @Column(name = "Version", nullable = false, length = 150)
@@ -93,16 +91,21 @@ public class VolumetricoSAT implements Serializable {
     @JsonProperty("FechaYHoraReporteMes")
     @Column(name = "FechaYHoraReporteMes", updatable = false, nullable = false)
     private Date FechaYHoraReporteMes;
+
 //    @OneToOne(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-//    @OneToOne(mappedBy = "producto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private Producto producto;
+
+    @JsonProperty("Producto")
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "volumetricoSAT")
+    private Set<Producto> productoSet = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         VolumetricoSAT that = (VolumetricoSAT) o;
-        return  Objects.equals(id, that.id);
+        return  Objects.equals(Id, that.Id);
     }
 
     @Override

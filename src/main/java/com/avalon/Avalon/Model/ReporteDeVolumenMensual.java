@@ -6,18 +6,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.List;
-
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class Complemento {
+public class ReporteDeVolumenMensual {
 
-    @JsonProperty("TipoComplemento")
-    private String TipoComplemento;
+    @JsonProperty("ControlDeExistencias")
+    private ControlDeExistencias ControlDeExistencias;
 
-    @JsonProperty("Nacional")
-    private List<Nacional> Nacional;
+    @JsonProperty("Entregas")
+    private Entregas Entregas;
 
 }
