@@ -14,12 +14,12 @@ import java.util.List;
  */
 public interface VolumetricoSATService {
 
-    public VolumetricoSAT saveVolumetricoSAT(VolumetricoSAT volumetricoSAT);
+    void saveVolumetricoSAT(VolumetricoSAT volumetricoSAT);
 
-    public void delete(long id);
+    void delete(long id);
 
-    public VolumetricoSAT findById(long id);
+    VolumetricoSAT findById(long id);
 
-    public List<VolumetricoSAT> findAll();
+    List<VolumetricoSAT> findAll();
 
 }

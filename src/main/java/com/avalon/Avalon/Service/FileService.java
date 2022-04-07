@@ -25,12 +25,8 @@ public class FileService {
     UploadService uploadService;
 
     public void uploadFile(MultipartFile file) {
-
         try {
-            /*Path copyLocation = Paths
-                    .get(uploadDir + File.separator + StringUtils.cleanPath(file.getOriginalFilename()));
-            Files.copy(file.getInputStream(), copyLocation, StandardCopyOption.REPLACE_EXISTING);*/
-            log.warn("CARGANDO: " + file.getOriginalFilename());
+            log.warn("Cargando " + file.getOriginalFilename() + " ...");
             uploadService.save(file);
         } catch (Exception e) {
             e.printStackTrace();
