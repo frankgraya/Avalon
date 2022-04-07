@@ -4,6 +4,7 @@
  */
 package com.avalon.Avalon.Service;
 
+import com.avalon.Avalon.Model.Producto;
 import com.avalon.Avalon.Model.VolumetricoSAT;
 import com.avalon.Avalon.Util.JSONUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,6 +31,7 @@ public class UploadService {
     public void save(MultipartFile file) {
         if (!file.isEmpty()) {
             VolumetricoSAT volumetricoSAT = JSONUtil.convertJsonToJava(file, VolumetricoSAT.class);
+            volumetricoSAT.getProductoSet().forEach(producto1 -> producto1.setVolumetricoSAT(volumetricoSAT)); // mover a su service
             volumetricoSATService.saveVolumetricoSAT(volumetricoSAT);
         } else {
             throw new FileStorageException("Archivo vacio!");

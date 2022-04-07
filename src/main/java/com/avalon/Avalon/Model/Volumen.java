@@ -9,7 +9,7 @@ import java.util.Map;
 public class Volumen {
 
     @JsonProperty("ValorNumerico")
-    private long ValorNumerico;
+    private double ValorNumerico;
 
     @JsonProperty("UnidadDeMedida")
     private String UnidadDeMedida;
