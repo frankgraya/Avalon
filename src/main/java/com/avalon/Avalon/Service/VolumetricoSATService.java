@@ -14,7 +14,9 @@ import java.util.List;
  */
 public interface VolumetricoSATService {
 
-    void saveVolumetricoSAT(VolumetricoSAT volumetricoSAT);
+    void build(VolumetricoSAT volumetricoSAT);
+
+    void save(VolumetricoSAT volumetricoSAT);
 
     void delete(long id);
 

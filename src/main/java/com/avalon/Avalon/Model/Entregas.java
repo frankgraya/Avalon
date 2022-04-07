@@ -7,17 +7,26 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
+@Entity
+@Table(name = "entregas")
 public class Entregas {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
 
     @JsonProperty("TotalEntregasMes")
     private long TotalEntregasMes;
 
+    @ManyToOne
+    @JoinColumn(name = "suma_volumen_entregado_mes_id")
     @JsonProperty("SumaVolumenEntregadoMes")
     private Volumen SumaVolumenEntregadoMes;
 
@@ -28,6 +37,6 @@ public class Entregas {
     private double ImporteTotalEntregasMes;
 
     @JsonProperty("Complemento")
-    private List<Complemento> Complemento;
+    private transient List<Complemento> Complemento;
 
 }

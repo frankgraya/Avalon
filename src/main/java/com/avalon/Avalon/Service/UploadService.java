@@ -31,8 +31,7 @@ public class UploadService {
     public void save(MultipartFile file) {
         if (!file.isEmpty()) {
             VolumetricoSAT volumetricoSAT = JSONUtil.convertJsonToJava(file, VolumetricoSAT.class);
-            volumetricoSAT.getProductoSet().forEach(producto1 -> producto1.setVolumetricoSAT(volumetricoSAT)); // mover a su service
-            volumetricoSATService.saveVolumetricoSAT(volumetricoSAT);
+            volumetricoSATService.save(volumetricoSAT);
         } else {
             throw new FileStorageException("Archivo vacio!");
         }

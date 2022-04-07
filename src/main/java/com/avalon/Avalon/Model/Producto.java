@@ -37,7 +37,8 @@ public class Producto {
     @JsonProperty("ComposOctanajeGasolina")
     private long ComposOctanajeGasolina;
 
-    @Transient
+    @ManyToOne
+    @JoinColumn(name = "reporte_de_volumen_mensual_id")
     @JsonProperty("ReporteDeVolumenMensual")
     private ReporteDeVolumenMensual ReporteDeVolumenMensual;
 

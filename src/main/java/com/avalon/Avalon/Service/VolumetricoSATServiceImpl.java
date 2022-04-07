@@ -4,6 +4,7 @@
  */
 package com.avalon.Avalon.Service;
 
+import com.avalon.Avalon.Model.Producto;
 import com.avalon.Avalon.Model.VolumetricoSAT;
 import com.avalon.Avalon.Repository.VolumetricoSATRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -24,8 +25,20 @@ public class VolumetricoSATServiceImpl implements VolumetricoSATService {
     @Autowired
     private VolumetricoSATRepository volumetricoSATRepository;
 
+    @Autowired
+    private ProductoService productoService;
     @Override
-    public void saveVolumetricoSAT(VolumetricoSAT volumetricoSAT) {
+    public void build(VolumetricoSAT volumetricoSAT) {
+
+
+    }
+
+    @Override
+    public void save(VolumetricoSAT volumetricoSAT) {
+        for (Producto producto : volumetricoSAT.getProductoSet()){
+            producto.setVolumetricoSAT(volumetricoSAT);
+            productoService.build(producto);
+        }
         volumetricoSATRepository.save(volumetricoSAT);
         log.info("Se guardo con exito!");
     }
