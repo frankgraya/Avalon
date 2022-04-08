@@ -7,12 +7,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.Transient;
+
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
 public class Transporte {
-
 
     @JsonProperty("PermisoTransporte")
     private String PermisoTransporte;
