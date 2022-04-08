@@ -41,7 +41,6 @@ public class FileController {
         return "upload";
     }
 
-
     @PostMapping("/uploadFiles")
     public String uploadFiles(@RequestParam("files") MultipartFile[] files, RedirectAttributes redirectAttributes) {
 
@@ -53,25 +52,5 @@ public class FileController {
 
         return "redirect:/";
     }
-
-  /*  @GetMapping("/test")
-    public String viewHomePage(Model model) {
-        List<VolumetricoSAT> volumetricoSATS = volumetricoSATService.findAll();
-
-        model.addAttribute("listVolumetricoSAT", volumetricoSATService.findAll());
-        log.warn("se recibieron parametros"+"listVolumetricoSAT", volumetricoSATService.findAll());
-
-
-             return "redirect:/";  }
-*/
-
-
-
-
-
-
-
-
-
 
 }

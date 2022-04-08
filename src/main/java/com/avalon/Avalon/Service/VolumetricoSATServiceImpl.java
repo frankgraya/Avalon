@@ -62,7 +62,7 @@ public class VolumetricoSATServiceImpl implements VolumetricoSATService {
 
     @Override
     public List<VolumetricoSAT> findAll() {
-        return (List<VolumetricoSAT>) volumetricoSATRepository.findAll();
+        return volumetricoSATRepository.findAll();
     }
 
 }
