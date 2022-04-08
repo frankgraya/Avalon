@@ -5,8 +5,4 @@ import org.springframework.stereotype.Repository;
 
 public interface ReporteDeVolumenMensualService {
     void save(ReporteDeVolumenMensual reporteDeVolumenMensual);
-
-    @Repository
-    interface TransporteRepository {
-    }
 }

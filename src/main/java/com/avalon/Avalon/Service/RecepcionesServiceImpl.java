@@ -14,10 +14,13 @@ public class RecepcionesServiceImpl implements RecepcionesService {
     @Autowired
     private RecepcionesRespository recepcionesRespository;
 
+    @Autowired
+    private VolumenService volumenService;
 
     @Override
     public void save(Recepciones recepciones) {
+        volumenService.save(recepciones.getSumaVolumenRecepcionMes());
         recepcionesRespository.save(recepciones);
-
+        log.info("Se guardo con exito!");
     }
 }

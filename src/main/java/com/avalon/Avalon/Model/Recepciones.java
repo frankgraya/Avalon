@@ -7,16 +7,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
+@Entity
+@Table(name = "recepciones")
 public class Recepciones {
 
     @Id
@@ -27,6 +25,8 @@ public class Recepciones {
     @JsonProperty("TotalRecepcionesMes")
     private long TotalRecepcionesMes;
 
+    @ManyToOne
+    @JoinColumn(name = "suma_volumen_recepcion_mes_id")
     @JsonProperty("SumaVolumenRecepcionMes")
     private Volumen SumaVolumenRecepcionMes;
 

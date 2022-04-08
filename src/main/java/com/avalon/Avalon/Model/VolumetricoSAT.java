@@ -4,6 +4,7 @@
  */
 package com.avalon.Avalon.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -99,6 +100,10 @@ public class VolumetricoSAT implements Serializable {
             fetch = FetchType.LAZY,
             mappedBy = "volumetricoSAT")
     private Set<Producto> productoSet = new HashSet<>();
+
+    @JsonIgnore
+    @JsonProperty("BitacoraMensual")
+    private String BitacoraMensual;
 
     @Override
     public boolean equals(Object o) {
