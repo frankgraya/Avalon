@@ -4,18 +4,21 @@
  */
 package com.avalon.Avalon.Service;
 
-import com.avalon.Avalon.Model.Producto;
-import com.avalon.Avalon.Model.VolumetricoSAT;
-import com.avalon.Avalon.Util.JSONUtil;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.avalon.Avalon.Repository.VolumetricoSATRepository;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Iterator;
 import lombok.extern.slf4j.Slf4j;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 /**
  *
@@ -25,16 +28,49 @@ import java.io.IOException;
 @Service
 public class UploadService {
 
-    @Autowired
-    private VolumetricoSATService volumetricoSATService;
+    private String folder = "cargas//";
 
-    public void save(MultipartFile file) {
+    @Autowired
+    private VolumetricoSATRepository volumetricoSATRepository;
+
+    public String save(MultipartFile file) throws IOException, ParseException {
+
         if (!file.isEmpty()) {
-            VolumetricoSAT volumetricoSAT = JSONUtil.convertJsonToJava(file, VolumetricoSAT.class);
-            volumetricoSATService.save(volumetricoSAT);
-        } else {
-            throw new FileStorageException("Archivo vacio!");
+
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(folder + file.getOriginalFilename());
+            Files.write(path, bytes);
+            log.info("Archivo guardado");
+
+            System.out.println("ESTAS apunto de convertir el json");
+            JSONParser parser = new JSONParser();
+
+            log.info("ESTAS OBTENIENDO EL OBJETO");
+//
+            //leer la ruta del archivo
+            Object obj = parser.parse(new FileReader("test2.json"));
+            log.info("EL OBJETO ES " + obj);
+            JSONObject jsonObject = (JSONObject) obj;
+
+            String Version = (String) jsonObject.get("Version");
+            System.out.println(Version);
+
+            long RfcContribuyente = (Long) jsonObject.get("RfcContribuyente");
+            System.out.println(RfcContribuyente);
+            // loop array
+            JSONArray msg = (JSONArray) jsonObject.get("MENSAJE");
+
+            //leer completo el mensaje
+            Iterator<String> iterator = msg.iterator();
+            while (iterator.hasNext()) {
+                System.out.println(iterator.next());
+            }
+
+//            File folder = new File("cargas//");
+//            findAllFilesInFolder(folder);
         }
+
+        return "Archivo guardado correctamente";
     }
 
 //    public void JsonConversor() throws ParseException {

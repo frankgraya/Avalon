@@ -17,10 +17,15 @@ public class ReporteDeVolumenMensualImpl implements ReporteDeVolumenMensualServi
     @Autowired
     private EntregasService entregasService;
 
+    @Autowired
+    private RecepcionesService recepcionesService;
     @Override
     public void save(ReporteDeVolumenMensual reporteDeVolumenMensual) {
+
         controlDeExistenciasService.save(reporteDeVolumenMensual.getControlDeExistencias());
+        recepcionesService.save(reporteDeVolumenMensual.getRecepciones());
         entregasService.save(reporteDeVolumenMensual.getEntregas());
         reporteDeVolumenMensualRepository.save(reporteDeVolumenMensual);
+
     }
 }

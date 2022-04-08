@@ -30,4 +30,10 @@ public class ReporteDeVolumenMensual {
     @JsonProperty("Entregas")
     private Entregas Entregas;
 
+
+    @ManyToOne
+    @JoinColumn(name = "recepciones_id")
+    @JsonProperty("Recepciones")
+    private Recepciones recepciones;
+
 }
