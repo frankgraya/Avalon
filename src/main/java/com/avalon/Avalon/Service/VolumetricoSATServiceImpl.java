@@ -4,13 +4,15 @@
  */
 package com.avalon.Avalon.Service;
 
+import com.avalon.Avalon.Model.Producto;
 import com.avalon.Avalon.Model.VolumetricoSAT;
 import com.avalon.Avalon.Repository.VolumetricoSATRepository;
-import java.util.List;
-import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -23,10 +25,22 @@ public class VolumetricoSATServiceImpl implements VolumetricoSATService {
     @Autowired
     private VolumetricoSATRepository volumetricoSATRepository;
 
+    @Autowired
+    private ProductoService productoService;
     @Override
-    public VolumetricoSAT saveVolumetricoSAT(VolumetricoSAT volumetricoSAT) {
-        log.info("Se guardo saveEmployee con exito ");
-        return volumetricoSATRepository.save(volumetricoSAT);
+    public void build(VolumetricoSAT volumetricoSAT) {
+
+
+    }
+
+    @Override
+    public void save(VolumetricoSAT volumetricoSAT) {
+        for (Producto producto : volumetricoSAT.getProductoSet()){
+            producto.setVolumetricoSAT(volumetricoSAT);
+            productoService.build(producto);
+        }
+        volumetricoSATRepository.save(volumetricoSAT);
+        log.info("Se guardo con exito!");
     }
 
     @Override

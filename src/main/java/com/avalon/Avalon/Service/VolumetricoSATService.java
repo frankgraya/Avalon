@@ -5,6 +5,7 @@
 package com.avalon.Avalon.Service;
 
 import com.avalon.Avalon.Model.VolumetricoSAT;
+
 import java.util.List;
 
 /**
@@ -13,12 +14,14 @@ import java.util.List;
  */
 public interface VolumetricoSATService {
 
-    public VolumetricoSAT saveVolumetricoSAT(VolumetricoSAT volumetricoSAT);
+    void build(VolumetricoSAT volumetricoSAT);
 
-    public void delete(long id);
+    void save(VolumetricoSAT volumetricoSAT);
 
-    public VolumetricoSAT findById(long id);
+    void delete(long id);
 
-    public List<VolumetricoSAT> findAll();
+    VolumetricoSAT findById(long id);
+
+    List<VolumetricoSAT> findAll();
 
 }

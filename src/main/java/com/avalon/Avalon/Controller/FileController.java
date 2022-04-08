@@ -29,22 +29,10 @@ public class FileController {
         return "upload";
     }
 
-    @PostMapping("/uploadFile")
-    public String uploadFile(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
-
-        fileService.uploadFile(file);
-
-        redirectAttributes.addFlashAttribute("message",
-                "Subiste con éxito " + file.getOriginalFilename() + "!");
-
-        return "redirect:/";
-    }
-
     @PostMapping("/uploadFiles")
     public String uploadFiles(@RequestParam("files") MultipartFile[] files, RedirectAttributes redirectAttributes) {
 
         Arrays.asList(files)
-                .stream()
                 .forEach(file -> fileService.uploadFile(file));
 
         redirectAttributes.addFlashAttribute("message",
