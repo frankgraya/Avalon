@@ -4,127 +4,74 @@
 
     <meta charset="UTF-8">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
     <title>Archivos</title>
 </head>
-<style>
-    #customFile .custom-file-control::after {
-        content: "Select file...";
-    }
-
-    #customFile .custom-file-control::before {
-        content: "Click me";
-    }
-
-    #customFile .custom-file-control:lang(es)::after {
-        content: "Seleccionar archivo...";
-    }
-
-    #customFile .custom-file-control:lang(es)::before {
-        content: "Seleccionar";
-    }
-
-    .custom-file-control.selected:lang(en)::after {
-        content: "" !important;
-    }
-
-    .custom-file {
-        overflow: hidden;
-    }
-    .custom-file-control {
-        white-space: nowrap;
-    }
-</style>
 <body>
-    <h1>Conversor Json</h1>
-    <hr/>
 
-    <div class="container" style="margin-top: 30px">
-        <div class="card">
-            <div class="jumbotron">
-                <h1 style="text-align: center;"></h1>
-            </div>
-            <h4>Subir varios archivos:</h4>
+
+    <div class="card">
+        <div class="card-header">
+            <h1 class="display-6">Ingrese su archivo json</h1>
+        </div>
+        <div class="card-body">
             <form method="POST" th:action="@{/uploadFiles}" enctype="multipart/form-data">
                 <div class="form-group">
                     <input type="file" name="files" accept="application/JSON" multiple/> <br/><br/>
-                    <button type="submit">Enviar</button>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
                 </div>
             </form>
-
             <hr/>
             <div th:if="${message}">
                 <h2 th:text="${message}"/>
             </div>
         </div>
 
-
-        <div class="container my-2">
-            <h1 class="display-4" style="text-align: center"></h1>
-
-            <table border="1"  class="table table-bordered table-responsive-md">
-                <thead>
+        <div class="card-body">
+            <div class="container my-2">
+                <h1 class="display-5">Lista de json</h1>
+                <table border="1" class="table table-hover">
+                    <thead class="thead-dark" >
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">id</th>
                         <th scope="col">Version</th>
                         <th scope="col">Rfc Contribuyente</th>
-                        <th scope="col">Rfc Representante Legal</th>
+                        <th scope="col">Rfc Representante legal</th>
                         <th scope="col">Rfc Proveedor</th>
                         <th scope="col">Caracter</th>
                         <th scope="col">Modalidad Permiso</th>
                         <th scope="col">Num Permiso</th>
                         <th scope="col">Clave Instalacion</th>
                         <th scope="col">Descripcion Instalacion</th>
-                        <th scope="col">Numero Pozos</th>
-                        <th scope="col">Numero Tanques</th>
-                        <th scope="col">Numero Ductos EntradaSalida</th>
-                        <th scope="col">Numero Ductos Transporte Distribucion</th>
-                        <th scope="col">Numero Dispensarios</th>
-                        <th scope="col">Fecha Y Hora Reporte Mes</th>
-                        <th scope="col">Producto</th>
+
+
+
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>4.0</td>
-                        <td>PET040903DH1</td>
-                        <td>MEAD740606CF9</td>
-                        <td>AIS041108E60</td>
-                        <td>permisionario</td>
-                        <td>PER2</td>
-                        <td>PL/436/EXP/ES/2015</td>
-                        <td>EDS-0195</td>
-                        <td>NUEVA ARTEAGA</td>
-                        <td>0</td>
-                        <td>3</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>12</td>
-                        <td>2021-10-31T00:00:00-05:00</td>
-                        <td>producto</td>
+                    </thead>
+                    <tbody>
+                    <tr th:each="VolumetricoSAT : ${listVolumetricoSAT}">
+                        <td  scope="row" th:text="${VolumetricoSAT.Id}"></td>
+                        <td th:text="${VolumetricoSAT.Version}"></td>
+                        <td th:text="${VolumetricoSAT.RfcContribuyente}"></td>
+                        <td th:text="${VolumetricoSAT.RfcRepresentanteLegal}"></td>
+                        <td th:text="${VolumetricoSAT.RfcProveedor}"></td>
+                        <td th:text="${VolumetricoSAT.Caracter}"></td>
+                        <td th:text="${VolumetricoSAT.ModalidadPermiso}"></td>
+                        <td th:text="${VolumetricoSAT.NumPermiso}"></td>
+                        <td th:text="${VolumetricoSAT.ClaveInstalacion}"></td>
+                        <td th:text="${VolumetricoSAT.DescripcionInstalacion}"></td>
+
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>4.0</td>
-                        <td>PET040903DH1</td>
-                        <td>MEAD740606CF9</td>
-                        <td>AIS041108E60</td>
-                        <td>permisionario</td>
-                        <td>PER2</td>
-                        <td>PL/436/EXP/ES/2015</td>
-                        <td>EDS-0195</td>
-                        <td>NUEVA ARTEAGA</td>
-                        <td>0</td>
-                        <td>3</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>12</td>
-                        <td>2021-10-31T00:00:00-05:00</td>
-                        <td>producto</td>
-                    </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
+</body>
+
+        </div>
+    </div>
 </body>
 </html>

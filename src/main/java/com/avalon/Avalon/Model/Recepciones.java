@@ -28,7 +28,7 @@ public class Recepciones {
     @ManyToOne
     @JoinColumn(name = "suma_volumen_recepcion_mes_id")
     @JsonProperty("SumaVolumenRecepcionMes")
-    private Volumen SumaVolumenRecepcionMes;
+   private Volumen SumaVolumenRecepcionMes;
 
     @JsonProperty("TotalDocumentosMes")
     private long TotalDocumentosMes;
@@ -36,7 +36,7 @@ public class Recepciones {
     @JsonProperty("ImporteTotalRecepcionesMensual")
     private double ImporteTotalRecepcionesMensual;
 
-    @JsonProperty("Complemento")
+   @JsonProperty("Complemento")
     private transient List<Complemento> Complemento;
 
 }
