@@ -4,21 +4,19 @@
  */
 package com.avalon.Avalon.Controller;
 
-import com.avalon.Avalon.Model.VolumetricoSAT;
 import com.avalon.Avalon.Service.FileService;
-import java.util.Arrays;
-import java.util.List;
-
 import com.avalon.Avalon.Service.VolumetricoSATService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.ui.Model;
+
+import java.util.Arrays;
 
 /**
  *
@@ -35,8 +33,8 @@ public class FileController {
     @Autowired
     public VolumetricoSATService volumetricoSATService;
 
-    @GetMapping("/")
-    public String index(Model model) {
+    @GetMapping("/upload")
+    public String upload(Model model) {
         model.addAttribute("listVolumetricoSAT", volumetricoSATService.findAll());
         return "upload";
     }
@@ -50,7 +48,7 @@ public class FileController {
         redirectAttributes.addFlashAttribute("message",
                 "Has subido correctamente todos los archivos.!");
 
-        return "redirect:/";
+        return "redirect:/upload";
     }
 
 }

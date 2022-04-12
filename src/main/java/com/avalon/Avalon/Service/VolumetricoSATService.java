@@ -4,9 +4,11 @@
  */
 package com.avalon.Avalon.Service;
 
+import com.avalon.Avalon.Model.Producto;
 import com.avalon.Avalon.Model.VolumetricoSAT;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -23,5 +25,7 @@ public interface VolumetricoSATService {
     VolumetricoSAT findById(long id);
 
     List<VolumetricoSAT> findAll();
+
+    Set<Producto> findProductSetById(long id);
 
 }

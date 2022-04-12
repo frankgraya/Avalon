@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  *
@@ -63,6 +64,12 @@ public class VolumetricoSATServiceImpl implements VolumetricoSATService {
     @Override
     public List<VolumetricoSAT> findAll() {
         return volumetricoSATRepository.findAll();
+    }
+
+    @Override
+    public Set<Producto> findProductSetById(long id) {
+        VolumetricoSAT volumetricoSAT = volumetricoSATRepository.getById(id);
+        return volumetricoSAT.getProductoSet();
     }
 
 }
