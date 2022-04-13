@@ -21,9 +21,9 @@ public class ModalController {
         return "productoModal";
     }
 
-    @GetMapping("modal2")
-    public String modal2(@RequestParam("name") String name, Model model) {
-        model.addAttribute("name", name);
+    @GetMapping("deleteVolumId")
+    public String modal2(@RequestParam("volumId") long volumId, Model model) {
+        model.addAttribute("volumId", volumId);
         return "modal2";
     }
 }
