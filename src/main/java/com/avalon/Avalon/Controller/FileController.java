@@ -33,13 +33,13 @@ public class FileController {
     @Autowired
     public VolumetricoSATService volumetricoSATService;
 
-    @GetMapping("/upload")
+    @GetMapping("upload")
     public String upload(Model model) {
         model.addAttribute("listVolumetricoSAT", volumetricoSATService.findAll());
         return "upload";
     }
 
-    @PostMapping("/uploadFiles")
+    @PostMapping("uploadFiles")
     public String uploadFiles(@RequestParam("files") MultipartFile[] files, RedirectAttributes redirectAttributes) {
 
         Arrays.asList(files)
@@ -48,6 +48,14 @@ public class FileController {
         redirectAttributes.addFlashAttribute("message",
                 "Has subido correctamente todos los archivos.!");
 
+        return "redirect:/upload";
+    }
+
+    @GetMapping("deleteVolumId")
+    public String modal2(@RequestParam("volumId") long volumId, RedirectAttributes redirectAttributes) {
+        volumetricoSATService.delete(volumId);
+        redirectAttributes.addFlashAttribute("message",
+                "Se ha eliminado correctamente!");
         return "redirect:/upload";
     }
 

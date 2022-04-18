@@ -4,6 +4,7 @@
  */
 package com.avalon.Avalon.Model;
 
+import com.avalon.Avalon.Model.Security.Usuario;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -104,6 +105,11 @@ public class VolumetricoSAT implements Serializable {
     @JsonIgnore
     @JsonProperty("BitacoraMensual")
     private String BitacoraMensual;
+
+    @ManyToOne(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuarioVolumetrico;
 
     @Override
     public boolean equals(Object o) {

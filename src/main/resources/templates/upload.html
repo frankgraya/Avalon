@@ -75,6 +75,7 @@
                 </tbody>
             </table>
             <th:block th:replace="_modals :: modal('detailModal')">modal</th:block>
+            <th:block th:replace="_modals :: modal('modalConfirm')">modal</th:block>
         </div>
     </div>
 </div>
@@ -83,19 +84,23 @@
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script>
     $(document).ready(function () {
+        let volumId = "";
         $(".option-btn").click(function (event) {
-            const volumId = event.target.id;
-            switch (event.target.attributes["data-btn-type"].nodeValue) {
+            volumId = event.target.id;
+            switch (event.target.attributes["data-btn-type"].value) {
                 case "detail":
                     $.get("/modals/productoModal?volumId=" + volumId, function (data) {
                         $('#detailModal').find('.modal-body').html(data);
                     })
+                    $('#detailModal').find('.modal-title').html('Productos');
                     $("#detailModal").modal('show');
                     break;
                 case "delete":
-                    $.get("/modals/deleteVolumId?volumId=" + volumId, function (data) {
-                        $('#detailModal').find('.modal-body').html(data);
+                    $.get("/modals/modalConfirm?volumId=" + volumId, function (data) {
+                        $('#modalConfirm').find('.modal-body').html(data);
                     })
+                    $('#modalConfirm').find('.modal-title').html('Confirmar');
+                    $("#modalConfirm").modal('show');
                     break;
             }
         });
