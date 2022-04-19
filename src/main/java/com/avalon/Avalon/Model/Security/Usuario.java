@@ -1,9 +1,7 @@
 package com.avalon.Avalon.Model.Security;
 
 import com.avalon.Avalon.Model.VolumetricoSAT;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.Hibernate;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 
@@ -14,7 +12,9 @@ import java.util.Objects;
 
 @Getter
 @Setter
+@ToString
 @RequiredArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Usuario")
 public class Usuario extends SecurityProperties.User {
@@ -44,6 +44,7 @@ public class Usuario extends SecurityProperties.User {
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "usuarioVolumetrico")
+    @ToString.Exclude
     private List<VolumetricoSAT> volumetricoSATList = new ArrayList<>();
 
     @Override
