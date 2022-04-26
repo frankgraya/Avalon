@@ -26,4 +26,10 @@ public class ModalController {
         model.addAttribute("volumId", volumId);
         return "modalConfirm";
     }
+
+    @GetMapping("test")
+    public String test(Model model) {
+        model.addAttribute("listVolumetricoSAT", volumetricoSATService.findAll());
+        return "modal2";
+    }
 }

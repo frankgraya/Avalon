@@ -48,7 +48,7 @@ public class FileController {
         redirectAttributes.addFlashAttribute("message",
                 "Has subido correctamente todos los archivos.!");
 
-        return "redirect:/upload";
+        return "redirect:/modals/test";
     }
 
     @GetMapping("deleteVolumId")

@@ -38,4 +38,9 @@ public class Rol {
     public int hashCode() {
         return getClass().hashCode();
     }
+
+    public enum Roles {
+        ROLE_USER, ROLE_ADMIN;
+    }
+
 }
